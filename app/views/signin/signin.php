@@ -1,1 +1,1 @@
-<h1 class="text-danger">Sign in page nè</h1>
+<h1 class="text-primary">Sign in page nè</h1>
