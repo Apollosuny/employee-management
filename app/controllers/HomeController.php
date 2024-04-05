@@ -3,7 +3,7 @@
 class HomeController extends Controller {
     public $data = [];
 
-    function index() 
+    function signin() 
     {
         $this->data['content'] = 'signin/signin';
         return $this->render('layout/app/app-layout', $this->data);

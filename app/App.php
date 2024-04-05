@@ -13,7 +13,7 @@ class App {
         {
             $this->__controller = $routes['default_controller'];
         }
-        $this->__action = 'index';
+        $this->__action = 'signin';
         $this->__params = [];
         $this->handleUrl();
     }
@@ -34,31 +34,30 @@ class App {
     public function handleUrl() 
     {
         $url = $this->getUrl();
-
         $url = $this->__routes->handleRoute($url);
         $urlArr = array_filter(explode('/', $url));
         $urlArr = array_values($urlArr);
 
         $urlCheck = '';
-        if (!empty($urlArr)) {
-            foreach ($urlArr as $key=>$item) {
-                $urlCheck.=$item.'/';
-                $fileCheck = rtrim($urlCheck, '/');
-                $fileArr = explode('/', $fileCheck);
-                $fileArr[count($fileArr) - 1] = ucfirst($fileArr[count($fileArr)] - 1);
-                $fileCheck = implode('/', $fileArr);
+        // if (!empty($urlArr)) {
+        //     foreach ($urlArr as $key=>$item) {
+        //         $urlCheck.=$item.'/';
+        //         $fileCheck = rtrim($urlCheck, '/');
+        //         $fileArr = explode('/', $fileCheck);
+        //         $fileArr[count($fileArr) - 1] = ucfirst($fileArr[count($fileArr)] - 1);
+        //         $fileCheck = implode('/', $fileArr);
                 
-                if (!empty($urlArr[$key - 1])) {
-                    unset($urlArr[$key - 1]);
-                }
-                if (file_exists('app/controllers/'.($fileCheck).'.php')) {
-                    $urlCheck = $fileCheck;
-                    break;
-                }
-            }
+        //         if (!empty($urlArr[$key - 1])) {
+        //             unset($urlArr[$key - 1]);
+        //         }
+        //         if (file_exists('app/controllers/'.($fileCheck).'Controller.php')) {
+        //             $urlCheck = $fileCheck;
+        //             break;
+        //         }
+        //     }
     
-            $urlArr = array_values($urlArr);
-        }
+        //     $urlArr = array_values($urlArr);
+        // }
 
 
         if (!empty($urlArr[0])) {
@@ -67,9 +66,9 @@ class App {
             $this->__controller = ucfirst($this->__controller) . 'Controller';
         }
 
-        if (file_exists('app/controllers/'.$urlCheck.'.php'))
+        if (file_exists('app/controllers/'.($this->__controller).'.php'))
             {
-                require_once 'controllers/'.$urlCheck.'.php';
+                require_once 'controllers/'.($this->__controller).'.php';
 
                 if (class_exists($this->__controller)) {
                     $this->__controller = new $this->__controller();
