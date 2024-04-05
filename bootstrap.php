@@ -13,6 +13,7 @@ $folder = str_replace(strtolower($_SERVER['DOCUMENT_ROOT']), '', strtolower(_DIR
 $web_root = $web_root.$folder;
 
 define('_WEB_ROOT', $web_root);
+define('_IMG_ROOT_URL', $web_root.'/public/assets/images');
 
 require_once 'app/configs/routes.php';
 require_once 'app/core/Route.php';

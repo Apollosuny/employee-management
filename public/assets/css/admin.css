@@ -1,0 +1,22 @@
+.avatar {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.avatar > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info > .username {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.info > .user-role {
+    font-size: 12px;
+    font-weight: 400;
+}
