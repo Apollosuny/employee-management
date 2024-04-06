@@ -12,15 +12,16 @@ git add .
 2. Make commit message
 ```bash
 git commit -m "your_msg"
+```
 
 3. Push code to github
 ```bash
 // First time Push
 git push -u origin your_branch
-```
 
 // Other
 git push
+```
 
 4. Pull new code
 ```bash
