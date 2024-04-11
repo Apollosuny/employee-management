@@ -14,9 +14,4 @@ class HomeController extends Controller {
         $this->data['content'] = 'signup/signup';
         return $this->render('layout/app/app-layout', $this->data);
     }
-
-    function detail()
-    {
-        
-    }
 }

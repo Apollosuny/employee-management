@@ -15,7 +15,23 @@ $web_root = $web_root.$folder;
 define('_WEB_ROOT', $web_root);
 define('_IMG_ROOT_URL', $web_root.'/public/assets/images');
 
-require_once 'app/configs/routes.php';
+$configs_dir = scandir('app/configs');
+if (!empty($configs_dir)) {
+    foreach ($configs_dir as $item) {
+        if ($item != '.' && $item != '..' && file_exists('app/configs/'.$item)) {
+            require_once 'app/configs/'.$item;
+        }
+    }
+}
 require_once 'app/core/Route.php';
 require_once 'app/App.php';
+
+if (!empty($config['database'])) {
+    $db_config = array_filter($config['database']);
+    if (!empty($db_config)) {
+        require_once 'app/core/Connection.php';
+        require_once 'app/core/Database.php';
+    }
+}
+require_once 'app/core/Model.php';
 require_once 'app/core/Controller.php';
