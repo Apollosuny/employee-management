@@ -22,5 +22,6 @@
             Back to home
         </a>
     </div>
+    <div><?php echo (!empty($message)) ? $message : 'Nothing error'; ?></div>
 </body>
 </html>

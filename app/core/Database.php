@@ -73,10 +73,16 @@ class Database {
     }
 
     function query($sql) {
-
-        $statement = $this->__conn->prepare($sql);
-        $statement->execute();
-        return $statement;
+        try {
+            $statement = $this->__conn->prepare($sql);
+            $statement->execute();
+            return $statement;
+        } catch (Exception $exception) {
+            $mess = $exception->getMessage();
+            $data['message'] = $mess;
+            App::$app->loadError('404',$data);
+            die();
+        }
     }
 
     function lastInsertId() {

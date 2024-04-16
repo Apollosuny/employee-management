@@ -21,8 +21,8 @@ class Connection {
             self::$conn = $connect;
         } catch (Exception $exception) {
             $mess = $exception->getMessage();
-
-            die($mess);
+            App::$app->loadError('404', ['messages'=>$mess]);
+            die();
         }
     }
 

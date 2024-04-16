@@ -1,12 +1,19 @@
 <?php
-class HomeModel {
+class HomeModel extends Model {
     protected $_table = 'products';
 
+    function tableName()
+    {
+        return 'products';
+    }
+
+    function fieldSelect()
+    {
+        return '*';
+    }
+
     public function getList() {
-        $data = [
-            'Item 1',
-            'Item 2',
-            'Item 3',
-        ];
+        // $data = $this->db->query("SELECT * FROM products")->fetch_assoc();
+        // return $data;
     }
 }

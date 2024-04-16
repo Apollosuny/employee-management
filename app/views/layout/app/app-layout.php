@@ -23,9 +23,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body>
     <?php 
-        // $this->render('layout/header/header');
+        $this->render('layout/header/header');
         $this->render($content);
-        // $this->render('layout/footer/footer');
+        $this->render('layout/footer/footer');
     ?>
 
     <!-- Bootstrap 5 -->

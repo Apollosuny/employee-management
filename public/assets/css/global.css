@@ -5,3 +5,26 @@
 .h-95 {
     height: 95% !important;
 }
+
+.section-employee-info > .avatar {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.section-employee-info > .avatar > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-employee-info > .info > .username {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.section-employee-info > .info > .user-role {
+    font-size: 12px;
+    font-weight: 400;
+}
