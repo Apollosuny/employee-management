@@ -42,6 +42,10 @@ class App {
         $urlArr = array_filter(explode('/', $url));
         $urlArr = array_values($urlArr);
 
+        foreach ($urlArr as $item) {
+            echo $item . '<br>';
+        }
+
         $urlCheck = '';
         // if (!empty($urlArr)) {
         //     foreach ($urlArr as $key=>$item) {
@@ -89,10 +93,13 @@ class App {
         else 
             $this->loadError();
 
+
         if (!empty($urlArr[1])) {
             $this->__action = $urlArr[1];
             unset($urlArr[1]);
         }
+
+        // echo $this->__action;
 
         $this->__params = array_values($urlArr);
 

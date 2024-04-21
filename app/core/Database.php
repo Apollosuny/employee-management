@@ -2,13 +2,16 @@
 
 class Database {
     private $__conn;
+
+    use QueryBuilder;
+
     function __construct()
     {
         global $db_config;
         $this->__conn = Connection::getInstance($db_config);
     }
 
-    function insert($table, $data) {
+    function insertData($table, $data) {
         if (!empty($data)) {
             $fieldStr  = '';
             $valueStr = '';
@@ -31,7 +34,7 @@ class Database {
         return false;
     }
 
-    function update($table, $data, $condition='') {
+    function updateData($table, $data, $condition='') {
         if (!empty($data)) {
             $updateStr = '';
             foreach ($data as $key=>$value) {
@@ -55,7 +58,7 @@ class Database {
         return false;
     }
 
-    function detele($table, $data, $condition='') {
+    function deteleData($table, $data, $condition='') {
 
         if (!empty($condition)) {
             $sql = "DELETE FROM $table WHERE $condition";

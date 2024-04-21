@@ -8,12 +8,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 body {
     font-family: 'Open Sans', sans-serif;
-	/* background:url(../images/bann.jpg) no-repeat 0px 0px; */
-	/* background-size:cover;
+	background:url(../images/bann.jpg) no-repeat 0px 0px;
+	background-size:cover;
 	-webkit-background-size:cover;
 	-ms-background-size:cover;
 	-o-background-size:cover;
-	-moz-background-size:cover; */
+	-moz-background-size:cover;
 	background-position:center;
 	background-attachment:fixed;
 }

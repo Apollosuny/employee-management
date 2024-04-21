@@ -7,7 +7,7 @@
     <!--form-stars-here-->
     <div class="wthree-form">
         <h2>HR: Driving Success Through People.</h2>
-        <form action="#" method="post">
+        <form action="<?php echo _WEB_ROOT; ?>/auth/handle_sign_up" method="post">
             <div class="form-sub-w3">
                 <input type="text" name="Username" placeholder="Username " required="" />
                 <div class="icon-w3">
@@ -23,9 +23,9 @@
             <div class="form-sub-w3">
                 <input type="password" name="password" id="password" placeholder="Password " required="" />
                 <!-- pass -->
-                <div class="showPass">
+                <!-- <div class="showPass">
                     <i class="far fa-eye fa-regular" id="eye1"></i>
-                </div>
+                </div> -->
                 <div class="icon-w3">
                     <i class="fas fa-unlock-alt"></i>
                 </div>
@@ -33,9 +33,9 @@
             <div class="form-sub-w3">
                 <input type="password" name="password" id="re-password" placeholder="Re-Enter the password " required="" />
                 <!-- re-pass -->
-                <div class="showPass">
+                <!-- <div class="showPass">
                     <i class="far fa-eye fa-regular" id="eye"></i>
-                </div>
+                </div> -->
                 <div class="icon-w3">
                     <i class="fa-solid fa-key"></i>
                 </div>

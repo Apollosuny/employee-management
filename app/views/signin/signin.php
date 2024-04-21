@@ -7,18 +7,18 @@
 	<!--form-stars-here-->
 	<div class="wthree-form">
 		<h2>HR - The Key to Business Success.</h2>
-		<form action="#" method="post">
+		<form action="<?php echo _WEB_ROOT; ?>/auth/handle_sign_in" method="post">
 			<div class="form-sub-w3">
-				<input type="text" name="Username" placeholder="Username " required="" />
+				<input type="text" name="username" placeholder="Username " required="" />
 				<div class="icon-w3">
 					<i class="fa fa-user" aria-hidden="true"></i>
 				</div>
 			</div>
 			<div class="form-sub-w3">
-				<input type="password" name="Password" id="password" placeholder="Password" required="" />
-				<div class="showPass">
+				<input type="password" name="password" id="password" placeholder="Password" required="" />
+				<!-- <div class="showPass">
 					<i class="far fa-eye fa-regular" id="eye1"></i>
-				</div>
+				</div> -->
 				<div class="icon-w3">
 					<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 				</div>

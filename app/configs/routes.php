@@ -1,7 +1,7 @@
 <?php
 // auth
-$routes['default_controller'] = 'home';
-$routes['signup'] = 'home/signup';
+$routes['default_controller'] = 'auth';
+$routes['signup'] = 'auth/signup';
 
 // admin
 $routes['admin/dashboard'] = 'admin/dashboard';
