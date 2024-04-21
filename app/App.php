@@ -1,7 +1,7 @@
 <?php
 
 class App {
-    private $__controller, $__action, $__params, $__routes;
+    private $__controller, $__action, $__params, $__routes, $__db;
 
     static public $app;
 
@@ -19,6 +19,12 @@ class App {
         }
         $this->__action = 'signin';
         $this->__params = [];
+
+        if (class_exists('DB')) {
+            $dbOject = new DB();
+            $this->__db = $dbOject->db;
+        }
+
         $this->handleUrl();
     }
 
@@ -86,6 +92,9 @@ class App {
                 if (class_exists($this->__controller)) {
                     $this->__controller = new $this->__controller();
                     unset($urlArr[0]);
+                    if (!empty($this->__db)) {
+                        $this->__controller->db = $this->__db;
+                    }
                 } else {
                     $this->loadError();
                 }

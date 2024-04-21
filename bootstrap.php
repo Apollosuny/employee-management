@@ -32,6 +32,7 @@ if (!empty($config['database'])) {
         require_once 'app/core/Connection.php';
         require_once 'app/core/QueryBuilder.php';
         require_once 'app/core/Database.php';
+        require_once 'app/core/DB.php';
     }
 }
 require_once 'app/core/Model.php';
