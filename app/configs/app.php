@@ -1,4 +1,11 @@
 <?php
-$config['app'] = [];
+$config['app'] = [
+    'routeMiddleware' => [
+        'signup' => AuthMiddleware::class
+    ],
+    'globalMiddleware' => [
+
+    ]
+];
 
 ?>

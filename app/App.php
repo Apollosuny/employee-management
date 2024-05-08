@@ -45,6 +45,11 @@ class App {
     {
         $url = $this->getUrl();
         $url = $this->__routes->handleRoute($url);
+
+        // Middleware
+        $this->handleGlobalMiddleware($this->__db);
+        $this->handleRouteMiddleware($this->__routes->getUri(), $this->__db);
+
         $urlArr = array_filter(explode('/', $url));
         $urlArr = array_values($urlArr);
 
@@ -123,5 +128,44 @@ class App {
     {
         extract($data);
         require_once 'views/error/'.$name.'.php';
+    }
+
+    public function handleRouteMiddleware($routeKey, $db) {
+        global $config;
+        $routeKey = trim($routeKey);
+        if (!empty($config['app']['routeMiddleware'])) {
+            $routeMiddlewareArr = $config['app']['routeMiddleware'];
+            foreach ($routeMiddlewareArr as $key=>$middlewareItem) {
+                if ($routeKey == trim($key) && file_exists('app/middlewares/'.$middlewareItem.'.php')) {
+                    require_once 'app/middlewares/'.$midlewareItem.'.php.';
+                    if (class_exists($midlewareItem)) {
+                        $middlewareObject = new $midlewareItem();
+                        if (!empty($db)) {
+                            $middlewareObject->db = $db;
+                        }
+                        $middlewareObject->handle();
+                    }
+                }
+            }
+        }
+    }
+
+    public function handleGlobalMiddleware($db) {
+        global $config;
+        if (!empty($config['app']['globalMiddleware'])) {
+            $globalMiddlewareArr = $config['app']['globalMiddleware'];
+            foreach ($globalMiddlewareArr as $key=>$middlewareItem) {
+                if (file_exists('app/middlewares/'.$middlewareItem.'.php')) {
+                    require_once 'app/middlewares/'.$midlewareItem.'.php.';
+                    if (class_exists($midlewareItem)) {
+                        $middlewareObject = new $midlewareItem();
+                        if (!empty($db)) {
+                            $middlewareObject->db = $db;
+                        }
+                        $middlewareObject->handle();
+                    }
+                }
+            }
+        }
     }
 }

@@ -23,9 +23,14 @@ if (!empty($configs_dir)) {
         }
     }
 }
+
+require_once 'app/helper/LoadFunc.helper.php';
+
+require_once 'app/core/Middlewares.php';
+
 require_once 'app/core/Route.php';
 require_once 'app/core/Session.php';
-require_once 'app/App.php';
+
 
 if (!empty($config['database'])) {
     $db_config = array_filter($config['database']);
@@ -36,6 +41,9 @@ if (!empty($config['database'])) {
         require_once 'app/core/DB.php';
     }
 }
+
+require_once 'app/App.php';
+
 require_once 'app/core/Model.php';
 require_once 'app/core/Controller.php';
 require_once 'app/core/Request.php';
