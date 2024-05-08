@@ -21,18 +21,20 @@ body {
 
 /* Header */
 .main-agileinfo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
     width: 30%;
-    margin: 0 auto;
-    padding: 2em 2em;
-	margin-top: -32px;
     background: rgba(255, 255, 255, 0.07);
     -webkit-box-shadow: 0 6px 12px 0 rgb(37, 37, 37);
     -moz-box-shadow: 0 6px 12px 0 rgb(37, 37, 37);
     box-shadow: 0 6px 43px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 10px;
 }
-.wthree-form h2 {
+.wthree-form h3 {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 300;
     text-align: center;
     margin-bottom: 1.5em;
@@ -170,7 +172,7 @@ input.checkbox {
 	color: white;
 	padding-top: 10px;
 }
-.another-login .fa-facebook-f{
+/* .another-login .fa-facebook-f{
 	position: absolute;
   	left: 48%;
   	transform: translateX(-48%);
@@ -193,11 +195,18 @@ input.checkbox {
 	border-radius: 50%;
 	color: whitesmoke;
 	cursor: pointer;
+} */
+
+.wrapper-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0,0,0,0.6);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
 }
-.another-login .fa-facebook-f:hover, .another-login >.fa-google:hover{
-	background-color: rgb(53, 215, 215);
-	color: black;
-}
+
 footer{
 	text-align: center;
 	margin-top: 70px;
@@ -304,14 +313,14 @@ footer{
 	h1 {
 		margin: 82px 0 0px;
 	}
-	.another-login .fa-facebook-f{
+	/* .another-login .fa-facebook-f{
 		  left: 47%;
 		  transform: translateX(-47%);
 	}
 	.another-login .fa-google{
 		  left: 53%;
 		  transform: translateX(-53%);
-	}
+	} */
 	.footer p {
 		margin: 3em 0 4em;
 	}
@@ -349,14 +358,14 @@ footer{
 	.main-agileinfo {
 		padding: 3em 2em;
 	}
-	.another-login .fa-facebook-f{
+	/* .another-login .fa-facebook-f{
 		left: 46%;
 		transform: translateX(-46%);
   }
   .another-login .fa-google{
 		left: 54%;
 		transform: translateX(-54%);
-  }
+  } */
 	.wthree-form h2 {
 		font-size: 18px;
 	}
@@ -449,14 +458,14 @@ footer{
 	.form-sub-w3 input[type="text"], input[type="password"] {
 		width: 82.5%;
 	}
-	.another-login .fa-facebook-f{
+	/* .another-login .fa-facebook-f{
 		left: 45%;
 		transform: translateX(-45%);
   }
   .another-login .fa-google{
 		left: 55%;
 		transform: translateX(-55%);
-  }
+  } */
 	.footer p {
 		margin: 3em 0em;
 		font-size: 13px;
@@ -504,14 +513,14 @@ footer{
 	.form-sub-w3 input[type="text"], input[type="password"] {
 		width: 78%;
 	}
-	.another-login .fa-facebook-f{
+	/* .another-login .fa-facebook-f{
 		left: 44%;
 		transform: translateX(-44%);
   }
   .another-login .fa-google{
 		left: 56%;
 		transform: translateX(-56%);
-  }
+  } */
 	.main-agileinfo {
 		padding: 2.5em 2em;
 	}
@@ -537,15 +546,15 @@ footer{
 	.wthree-form h2 {
 		letter-spacing: 2px;
 	}
-	.another-login .fa-facebook-f{
+	/* .another-login .fa-facebook-f{
 		left: 43%;
 		transform: translateX(-43%);
   }
   .another-login .fa-google{
 		left: 57%;
 		transform: translateX(-57%);
-  }
-}
+  } */
+} 
 @media screen and (max-width: 320px) {
 	.main-agileinfo {
 		padding: 1.5em 1.3em;

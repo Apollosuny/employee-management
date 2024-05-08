@@ -1,5 +1,6 @@
 <?php 
     $request_url = $_SERVER['REQUEST_URI'];
+    $isSinglePage = $request_url == '/' || $request_url == '/signup';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //web-fonts -->
     
 </head>
-<body>
+<body
+    class="<?php if ($isSinglePage) echo 'single-page' ?>"
+>
     <?php 
         if ($request_url == '/' || $request_url == '/signup') {
             $this->render($content);

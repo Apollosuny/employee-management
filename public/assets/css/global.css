@@ -1,3 +1,21 @@
+.single-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.text-white {
+    color: '#fff';
+}
+
+.text-30 {
+    color: #fff;
+    font-size: 30px;
+}
+
+.text-48 {
+    font-size: '48px';
+}
+
 .w-95 {
     width: 95% !important;
 }
@@ -27,4 +45,15 @@
 .section-employee-info > .info > .user-role {
     font-size: 12px;
     font-weight: 400;
+}
+
+/* Gap */
+.g-20 {
+    gap: 20px;
+}
+
+/* Icon size */
+.size-4 {
+    width: 40px;
+    height: 40px;
 }

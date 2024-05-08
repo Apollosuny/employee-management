@@ -20,10 +20,35 @@ class AuthController extends Controller {
     function handle_sign_in() 
     {
         $request = new Request();
-        $data = $request->getFields();
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+
+        if ($request->isPost()) {
+            $request->rules([
+                'username' => 'required|min:6|max:30',
+                'password' => 'required|min:6',
+            ]);
+    
+            $request->message([
+                'username.required' => 'Username is required',
+                'username.min' => 'Username min is 6',
+                'username.max' => 'Username max is 30',
+                'passowrd.required' => 'Password is required',
+                'password.min' => 'Password min is 6',
+            ]);
+    
+            $validate = $request->validate();
+            if (!$validate) {
+                $this->data['errors'] = $request->errors();
+                // Session::flash('old', $request->getFields());
+            }
+
+        // $this->db->insertData('User', $request->getFields());
+
+        // $this->data['content'] = 'signin/signin';
+        $this->render('signin/signin', $this->data);
+
+        } else {
+            $respone = new Response();
+        }
     }
 
     function signup()
