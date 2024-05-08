@@ -23,7 +23,7 @@ abstract class Model extends Database {
         $sql = "SELECT $fieldsSelect FROM $tableName";
         $query = $this->db->query($sql);
         if (!empty($query)) {
-            return $query->fetch_assoc();
+            // return $query->fetch_assoc();
         }
         return false;
     }
@@ -39,7 +39,7 @@ abstract class Model extends Database {
         $sql = "SELECT $fieldsSelect FROM $tableName WHERE $primaryKey=$id";
         $query = $this->db->query($sql);
         if (!empty($query)) {
-            return $query->fetch_row();
+            // return $query->fetch_row();
         }
         return false;
     }

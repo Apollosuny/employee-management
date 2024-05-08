@@ -1,10 +1,10 @@
 <?php
 class UserModel extends Model {
-    protected $_table = 'user';
+    protected $_table = 'User';
 
     function tableName()
     {
-        return 'user';
+        return 'User';
     }
 
     function fieldSelect()
@@ -13,6 +13,11 @@ class UserModel extends Model {
     }
 
     public function getAllUsers() {
+        
+    }
+
+    public function primaryKey()
+    {
         
     }
 }

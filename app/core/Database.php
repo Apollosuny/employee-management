@@ -16,8 +16,8 @@ class Database {
             $fieldStr  = '';
             $valueStr = '';
             foreach ($data as $key=>$value) {
-                $fieldStr.=$key;
-                $value.="'".$value."',";
+                $fieldStr.=strtolower($key).",";
+                $valueStr.="'".$value."',";
             }
             $fieldStr = rtrim($fieldStr, ',');
             $valueStr = rtrim($valueStr, ',');

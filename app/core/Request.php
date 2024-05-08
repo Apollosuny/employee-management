@@ -1,44 +1,54 @@
 <?php
 
-class Request {
+class Request
+{
 
     private $__rules = [], $__messages;
     private $errors = [];
+    public $db;
 
-    public function getMethod() {
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
+
+    public function getMethod()
+    {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
-    public function isPost() {
+    public function isPost()
+    {
         if ($this->getMethod() == 'post') return true;
         return false;
     }
 
-    public function isGet() {
+    public function isGet()
+    {
         if ($this->getMethod() == 'get') return true;
         return false;
     }
 
-    public function getFields() {
+    public function getFields()
+    {
 
         $dataFields = [];
 
         if ($this->isGet()) {
             if (!empty($_GET)) {
-                foreach ($_GET as $key=>$value) {
+                foreach ($_GET as $key => $value) {
                     if (is_array($value)) {
                         $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                     } else {
                         $dataFields[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
                     }
-                    
                 }
             }
         }
 
         if ($this->isPost()) {
             if (!empty($_POST)) {
-                foreach ($_POST as $key=>$value) {
+                foreach ($_POST as $key => $value) {
                     if (is_array($value)) {
                         $dataFields[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
                     } else {
@@ -51,22 +61,25 @@ class Request {
         return $dataFields;
     }
 
-    public function rules($rules = []) {
+    public function rules($rules = [])
+    {
         $this->__rules = $rules;
     }
 
-    public function message($messages = []) {
+    public function message($messages = [])
+    {
         $this->__messages = $messages;
     }
 
-    public function validate() {
+    public function validate()
+    {
         $this->__rules = array_filter($this->__rules);
         $checkValidate = true;
         if (!empty($this->__rules)) {
 
             $dataFields = $this->getFields();
 
-            foreach ($this->__rules as $fieldName=>$ruleItem) {
+            foreach ($this->__rules as $fieldName => $ruleItem) {
                 $ruleItemArr = explode('|', $ruleItem);
 
                 foreach ($ruleItemArr as $rules) {
@@ -77,7 +90,7 @@ class Request {
                     $ruleName = reset($rulesArr);
                     if (count($rulesArr) > 1) {
                         $ruleValue = end($rulesArr);
-                    } 
+                    }
 
                     if ($ruleName == 'required') {
                         if (empty(trim($dataFields[$fieldName]))) {
@@ -127,9 +140,12 @@ class Request {
                         }
 
                         if (!empty($tableName) && !empty($fieldCheck)) {
-                            
+                            $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'");
+                            if (!empty($checkExist)) {
+                                $this->setErrors($fieldName, $ruleName);
+                                $checkValidate = false;
+                            }
                         }
-
                     }
                 }
             }
@@ -138,20 +154,22 @@ class Request {
         return $checkValidate;
     }
 
-    public function errors($fieldName = '') {
+    public function errors($fieldName = '')
+    {
         if (!empty($this->errors)) {
             if (empty($fieldName)) {
                 $errorsArr = [];
-                foreach ($this->errors as $key=>$error) {
+                foreach ($this->errors as $key => $error) {
                     $errorsArr[$key] = reset($error);
                 }
                 return $errorsArr;
             }
             return reset($this->errors[$fieldName]);
-        } 
+        }
     }
 
-    public function setErrors($fieldName, $ruleName) {
-        $this->errors[$fieldName][$ruleName] = $this->__messages[$fieldName.'.'.$ruleName];
+    public function setErrors($fieldName, $ruleName)
+    {
+        $this->errors[$fieldName][$ruleName] = $this->__messages[$fieldName . '.' . $ruleName];
     }
 }

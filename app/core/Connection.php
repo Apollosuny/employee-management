@@ -8,16 +8,12 @@ class Connection {
 
         // Connect database
         try {
-            // $dsn = 'mysql:dbname='.$config['databaseName'].';host=127.0.0.1;port=3306;host='.$config['host'];
-
-            // $options = [
-            //     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-            //     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            // ];
-
-            // $conn = new PDO($dsn, $config['user'], $config['password'], $options);
-
-            $connect = mysqli_connect($config['host'], $config['user'], $config['password'], $config['databaseName'], 3307);
+            $dsn = 'mysql:dbname='.$config['databaseName'].';host='.$config['host'];
+            $options = [
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ];
+            $connect = new PDO($dsn, $config['user'], $config['password'], $options);
             self::$conn = $connect;
         } catch (Exception $exception) {
             $mess = $exception->getMessage();
