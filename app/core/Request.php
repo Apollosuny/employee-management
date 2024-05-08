@@ -140,7 +140,16 @@ class Request
                         }
 
                         if (!empty($tableName) && !empty($fieldCheck)) {
-                            $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'");
+                            if (count($rulesArr) == 3) {
+                                $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'")->row_count();
+                            } else if (count($rulesArr) == 4) {
+                                if (!empty($rulesArr) == 3 && preg_match('~.+?\=.+?~is', $rulesArr[3])) {
+                                    $conditionWhere = $rulesArr[3];
+                                    $conditionWhere = str_replace('=', '<>', $conditionWhere);
+                                    $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]' AND $conditionWhere")->row_count();
+                                }
+                                    
+                            }
                             if (!empty($checkExist)) {
                                 $this->setErrors($fieldName, $ruleName);
                                 $checkValidate = false;

@@ -24,6 +24,7 @@ if (!empty($configs_dir)) {
     }
 }
 require_once 'app/core/Route.php';
+require_once 'app/core/Session.php';
 require_once 'app/App.php';
 
 if (!empty($config['database'])) {
