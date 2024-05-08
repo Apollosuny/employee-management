@@ -1,7 +1,10 @@
 # Employee Management
 
 ## Run project 
-Use this: php -S 127.0.0.1:8000
+Use this: 
+```bash
+php -S 127.0.0.1:8000
+```
 
 ### Git command
 1. Add files changed to stage
