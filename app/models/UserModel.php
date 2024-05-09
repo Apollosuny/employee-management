@@ -20,4 +20,10 @@ class UserModel extends Model {
     {
         
     }
+
+    public function getAUser($username, $password) {
+        $sql = "SELECT * FROM ".$this->tableName()." WHERE username='".$username."' AND password='".$password."'";
+        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
 }

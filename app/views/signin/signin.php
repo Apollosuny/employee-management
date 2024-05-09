@@ -1,8 +1,7 @@
 <!--main-->
 <?php 
-	echo '<pre>';
-	print_r($errors);
-	echo '</pre>';
+	$errorsMsg = $errors['errors'];
+	$oldData = $oldData['oldData'];
 ?>
 <div class="h-100 position-relative">
 	<div class="main-agileinfo">
@@ -14,19 +13,26 @@
 			<h3>HR - The Key to Business Success.</h3>
 			<form action="<?php echo _WEB_ROOT; ?>/auth/handle_sign_in" method="post">
 				<div class="form-sub-w3">
-					<input type="text" name="username" placeholder="Username " required="" />
-					<div class="icon-w3">
-						<i class="fa fa-user" aria-hidden="true"></i>
+					<div>
+						<input type="text" name="username" placeholder="Username" value="<?php echo (!empty($oldData['username']) ? $oldData['username'] : false) ?>"/>
+						<div class="icon-w3">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</div>
 					</div>
+					<?php 
+						if (!empty($errorsMsg) && array_key_exists('username', $errorsMsg)) {
+							echo '<p style="color: red">'.$errorsMsg["username"].'</p>';
+						}
+					?>
 				</div>
 				<div class="form-sub-w3">
-					<input type="password" name="password" id="password" placeholder="Password" required="" />
-					<!-- <div class="showPass">
-							<i class="far fa-eye fa-regular" id="eye1"></i>
-						</div> -->
-					<div class="icon-w3">
-						<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+					<div>
+						<input type="password" name="password" id="password" placeholder="Password" />
+						<div class="icon-w3">
+							<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+						</div>
 					</div>
+					<p style="color: red"><?php echo (!empty($errorsMsg) && array_key_exists('password', $errorsMsg) ? $errorsMsg['password'] : '') ?></p>
 				</div>
 				<label class="anim">
 					<input type="checkbox" class="checkbox">
@@ -52,22 +58,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-	// Password 
-	const password = document.querySelector("#password");
-	const eyeIcon1 = document.querySelector("#eye1");
-
-	eyeIcon1.addEventListener("click", function() {
-		// eyeIcon.classList.toggle('fa-eye-slash')
-		const type2 = password.getAttribute("type") === "password" ? "text" : "password";
-		password.setAttribute("type", type2);
-		if (type2 === "text") {
-			this.classList.remove('fa-eye')
-			this.classList.add('fa-eye-slash');
-		} else {
-			this.classList.remove('fa-eye-slash');
-			this.classList.add('fa-eye')
-		}
-	})
-</script>

@@ -34,7 +34,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 >
     <?php 
         if ($request_url == '/' || $request_url == '/signup') {
-            $this->render($content);
+            $this->render($content, $sub_content);
         } else {
             $this->render('layout/header/header');
             $this->render($content);

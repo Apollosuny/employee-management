@@ -12,6 +12,11 @@ class HomeModel extends Model {
         return '*';
     }
 
+    public function primaryKey()
+    {
+        
+    }
+
     public function getList() {
         // $data = $this->db->query("SELECT * FROM products")->fetch_assoc();
         // return $data;
