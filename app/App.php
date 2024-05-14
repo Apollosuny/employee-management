@@ -131,9 +131,10 @@ class App {
             $routeMiddlewareArr = $config['app']['routeMiddleware'];
             foreach ($routeMiddlewareArr as $key=>$middlewareItem) {
                 if ($routeKey == trim($key) && file_exists('app/middlewares/'.$middlewareItem.'.php')) {
-                    require_once 'app/middlewares/'.$midlewareItem.'.php.';
-                    if (class_exists($midlewareItem)) {
-                        $middlewareObject = new $midlewareItem();
+                    // echo 'app/middlewares/'.$middlewareItem.'.php';
+                    require_once 'app/middlewares/'.$middlewareItem.'.php';
+                    if (class_exists($middlewareItem)) {
+                        $middlewareObject = new $middlewareItem();
                         if (!empty($db)) {
                             $middlewareObject->db = $db;
                         }

@@ -14,8 +14,33 @@
                     <span>Users</span>
                 </div>
             </a>
+            <a href="<?php echo _WEB_ROOT; ?>/admin/contracts">
+                <div>
+                    <span>Contracts</span>
+                </div>
+            </a>
+            <a href="<?php echo _WEB_ROOT; ?>/admin/positions">
+                <div>
+                    <span>Positions</span>
+                </div>
+            </a>
+            <a href="<?php echo _WEB_ROOT; ?>/admin/contract-types">
+                <div>
+                    <span>Contract type</span>
+                </div>
+            </a>
+            <a href="<?php echo _WEB_ROOT; ?>/admin/departments">
+                <div>
+                    <span>Departments</span>
+                </div>
+            </a>
             <div>
                 <span>Settings</span>
+            </div>
+            <div>
+                <form method="POST" action="<?php echo _WEB_ROOT; ?>/auth/logout">
+                    <button class="dropdown-item" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </div>

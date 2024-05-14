@@ -16,7 +16,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="section-user-info d-flex gap-2">
+                    <div class="section-user-info d-flex gap-2"> 
                         <div class="avatar">
                             <img src="<?php echo _WEB_ROOT; ?>/public/assets/images/default-avatar.jpg" />
                         </div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <?php $this->render($content); ?>
+            <?php $this->render($content, $sub_content); ?>
         </div>
     </div>
 </main>

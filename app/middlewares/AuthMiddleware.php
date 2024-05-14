@@ -3,9 +3,16 @@
 class AuthMiddleware extends Middlewares {
     public function handle()
     {
-        // $data = $this->db->table('User')->get();
-        if (Session::data('admin_login') == null) {
-
+        if (Session::data('user') != null) {
+            $user = Session::data('user')['user'];
+            if ($user['role'] == 'employee') {
+                $respone = new Response();
+                $respone->redirect('');
+                
+            } else if ($user['role'] == 'admin') {
+                $respone = new Response();
+                $respone->redirect('admin/users');
+            }
         }
     }
 }

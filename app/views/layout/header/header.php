@@ -1,19 +1,16 @@
 <header class="">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Company</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-end" style="gap: 16px;" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0 ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item d-flex justify-content-between align-items-center" style="gap: 20px">
                         <div class="section-employee-info d-flex gap-2" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="avatar">
                                 <img src="<?php echo _WEB_ROOT; ?>/public/assets/images/default-avatar.jpg" style="" />
@@ -23,14 +20,11 @@
                                 <span class="user-role">Employee</span>
                             </div>
                         </div>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <div>
+                            <form method="POST" action="<?php echo _WEB_ROOT; ?>/auth/logout">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                            </form>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -2,8 +2,20 @@
 <?php 
 	$errorsMsg = $errors['errors'];
 	$oldData = $oldData['oldData'];
+	$logoutMsg = $logout_success['logout_success'];
 ?>
 <div class="h-100 position-relative">
+	<?php 
+		if ($logoutMsg != null) {
+			echo '<div class="container">
+				<div style="transform: translateY(20px)">
+					<div class="alert alert-success" role="alert">'.
+					$logoutMsg
+					.'</div>
+				</div>
+			</div>';
+		}
+	?>
 	<div class="main-agileinfo">
 		<div class="text-center text-white">
 			<h2 class="text-48">Login</h2>

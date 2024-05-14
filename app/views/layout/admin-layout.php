@@ -53,7 +53,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
                         </div>
                     </div>
                 </div>
-                <?php $this->render($content); ?>
+                <?php $this->render($content, $sub_content); ?>
             </div>
         </div>
     </main>

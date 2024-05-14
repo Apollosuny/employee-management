@@ -1,7 +1,13 @@
 <?php
 $config['app'] = [
     'routeMiddleware' => [
-        'signup' => AuthMiddleware::class
+        'signup' => RequireLoginMiddleware::class,
+
+        // User
+        'dashboard' => RequireLoginMiddleware::class,
+
+        // Admin
+        'admin/adminpanel' => RequireLoginMiddleware::class
     ],
     'globalMiddleware' => [
 
