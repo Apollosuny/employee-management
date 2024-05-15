@@ -28,23 +28,6 @@ class AdminController extends Controller {
         return $this->render('layout/admin-layout', $this->data);
     }
 
-
-    /** Positions func */
-    function positions() 
-    {
-        $positions = $this->positionModel->getAllPositions();
-        $this->data['sub_content']['positions'] = [];
-        $this->data['content'] = 'admin/components/positions';
-        return $this->render('layout/admin-layout', $this->data);
-    }
-
-    function createPosition() 
-    {
-        $this->data['sub_content'] = [];
-        $this->data['content'] = 'admin/positions/create-position';
-        return $this->render('layout/admin-layout', $this->data);
-    }
-
     function contractTypes() 
     {
         $this->data['content'] = 'admin/components/contract-type';

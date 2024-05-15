@@ -13,8 +13,14 @@ class Connection {
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ];
-            $connect = new PDO($dsn, $config['user'], $config['password'], $options);
-            self::$conn = $connect;
+            // $connect = new PDO($dsn, $config['user'], $config['password'], $options);
+            $connection = @mysqli_connect($config['host'], $config['user'], $config['password'], $config['databaseName']);
+            if ($connection) {
+                echo '>>>>>>>>>>>>>>>>> Success';
+            } else {
+                echo '>>>>>>>>>>>>>> Failed';
+            }
+            self::$conn = $connection;
         } catch (Exception $exception) {
             $mess = $exception->getMessage();
             App::$app->loadError('404', ['messages'=>$mess]);

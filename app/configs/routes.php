@@ -11,7 +11,10 @@ $routes['admin/positions'] = 'position/positions';
 $routes['admin/positions/create'] = 'position/createPosition';
 $routes['admin/positions/edit'] = 'position/editPosition';
 
-$routes['admin/contract-types'] = 'admin/contractTypes';
+$routes['admin/contract-types'] = 'contractType/contractTypes';
+$routes['admin/contract-types/create'] = 'contractType/createContractType';
+// $routes['admin/contract-types/create'] = 'contractType/createContractType';
+
 $routes['admin/departments'] = 'admin/departments';
 $routes['admin/contracts'] = 'admin/contracts';
 
