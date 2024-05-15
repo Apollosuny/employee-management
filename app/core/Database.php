@@ -77,8 +77,7 @@ class Database {
 
     function query($sql) {
         try {
-            $statement = $this->__conn->prepare($sql);
-            $statement->execute();
+            $statement = $this->__conn->query($sql);
             return $statement;
         } catch (Exception $exception) {
             $mess = $exception->getMessage();
@@ -88,7 +87,7 @@ class Database {
         }
     }
 
-    function lastInsertId() {
-        return $this->__conn->lastInsertId();
-    }
+    // function lastInsertId() {
+    //     return $this->__conn->lastInsertId();
+    // }
 }

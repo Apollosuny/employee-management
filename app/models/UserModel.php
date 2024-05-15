@@ -14,7 +14,8 @@ class UserModel extends Model {
 
     public function getAllUsers() {
         $sql = "SELECT * FROM ".$this->tableName();
-        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->db;
+        $data = $this->db->query($sql);
         return $data;
     }
 
@@ -25,7 +26,12 @@ class UserModel extends Model {
 
     public function getAUser($username, $password) {
         $sql = "SELECT * FROM ".$this->tableName()." WHERE username='".$username."' AND password='".$password."'";
-        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-        return $data;
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            return $data;
+        }
+        
+        return null;
     }
 }

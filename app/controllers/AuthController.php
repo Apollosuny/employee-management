@@ -46,55 +46,50 @@ class AuthController extends Controller
             } else {
                 $user = $this->userModel->getAUser($request->getFields()['username'], $request->getFields()['password']);
                 
-                echo '<pre>';
-                print_r($user);
-                echo '</pre>';
+                // echo '<pre>';
+                // print_r($user['username']);
+                // echo '</pre>';
 
-                // echo $user;
-
-                if (!empty($user) && count($user) == 1) {
+                if (!empty($user)) {
                     /* Issue session */
                     $check = Session::data('user', [
-                        'username' => $user[0]['username'],
-                        'email' => $user[0]['email'],
-                        'role' => $user[0]['role']
+                        'username' => $user['username'],
+                        'email' => $user['email'],
+                        'role' => $user['role']
                     ]);
 
-                    var_dump($check);
-
-                    if (!empty($user[0]['role'])) {
-                        if ($user[0]['role'] == 'employee') {
+                    if (!empty($user['role'])) {
+                        if ($user['role'] == 'employee') {
                             $respone->redirect('dashboard');
                             return;
-                        } else if ($user[0]['role'] == 'admin') {
+                        } else if ($user['role'] == 'admin') {
                             $respone->redirect('admin/adminpanel');
                             return;
                         }
                     } else {
-                        // Trường hợp vai trò không xác định, có thể xử lý tại đây
                         Session::flash('errors', ['Invalid user role']);
-                        $respone->redirect('login');
+                        $respone->redirect('');
                         return;
                     }
                 } else {
                     Session::flash('errors', ['Invalid username or password']);
-                    $respone->redirect('login');
+                    $respone->redirect('');
                     return;
                 } 
             }
         }
-        if (Session::data('user')) {
-            $user = Session::data('user');
-            if ($user['role'] == 'employee') {
-                $respone->redirect('dashboard');
-            } else if ($user['role'] == 'admin') {
-                $respone->redirect('admin/adminpanel');
-            } else {
-                $respone->redirect('');
-            }
-        } else {
-            $respone->redirect('');
-        }
+        // if (Session::data('user')) {
+        //     $user = Session::data('user');
+        //     if ($user['role'] == 'employee') {
+        //         $respone->redirect('dashboard');
+        //     } else if ($user['role'] == 'admin') {
+        //         $respone->redirect('admin/adminpanel');
+        //     } else {
+        //         $respone->redirect('');
+        //     }
+        // } else {
+        //     $respone->redirect('');
+        // }
     }
 
     function signup()

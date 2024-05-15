@@ -1,8 +1,15 @@
 <!--main-->
 <?php 
-	$errorsMsg = $errors['errors'];
-	$oldData = $oldData['oldData'];
-	$logoutMsg = $logout_success['logout_success'];
+	if ($errors) 
+		$errorsMsg = $errors['errors'];
+	
+	if ($oldData)
+		$oldData = $oldData['oldData'];
+	
+	$logoutMsg = '';
+	if ($logout_success)
+		$logoutMsg = $logout_success['logout_success'];
+
 ?>
 <div class="h-100 position-relative">
 	<?php 
