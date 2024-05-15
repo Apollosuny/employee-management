@@ -1,111 +1,78 @@
+<?php
+$successMsg = $success['success'];
+$updatedSuccessMsg = $updated_success['updated_success'];
+$deletedSuccessMsg = $deleted_success['deleted_success'];
+?>
+
 <div class="bg-body-tertiary h-100 d-flex justify-content-center align-items-center">
     <div class="bg-body w-95 h-95 p-3">
-    <table class="table align-middle mb-0 bg-white">
-        <thead class="bg-light">
-            <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-            </tr>
-        </thead>
+        <?php
+        if (!empty($successMsg)) {
+            echo "
+                <div class='alert alert-success' role='alert'>" .
+                $successMsg
+                . "</div>
+                ";
+        }
+        if (!empty($updatedSuccessMsg)) {
+            echo "
+                <div class='alert alert-success' role='alert'>" .
+                $updatedSuccessMsg
+                . "</div>
+                ";
+        }
+        if (!empty($deletedSuccessMsg)) {
+            echo "
+                <div class='alert alert-success' role='alert'>" .
+                $deletedSuccessMsg
+                . "</div>
+                ";
+        }
+        ?>
+        
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>All positions</h3>
+            <div>
+                <a href="<?php echo _WEB_ROOT; ?>/admin/positions/create" class="btn btn-info">Create new position</a>
+            </div>
+        </div>
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        class="rounded-circle"
-                        />
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Doe</p>
-                        <p class="text-muted mb-0">john.doe@gmail.com</p>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Software engineer</p>
-                    <p class="text-muted mb-0">IT department</p>
-                </td>
-                <td>
-                    <span class="badge badge-success rounded-pill d-inline">Active</span>
-                </td>
-                <td>Senior</td>
-                <td>
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                    Edit
-                    </button>
-                </td>
-                </tr>
-                <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                    <img
-                        src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                        class="rounded-circle"
-                        alt=""
-                        style="width: 45px; height: 45px"
-                        />
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">Alex Ray</p>
-                        <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                    </div>
-                    </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Consultant</p>
-                    <p class="text-muted mb-0">Finance</p>
-                </td>
-                <td>
-                    <span class="badge badge-primary rounded-pill d-inline">
-                        Onboarding
-                    </span>
-                </td>
-                <td>Junior</td>
-                <td>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-rounded btn-sm fw-bold"
-                        data-mdb-ripple-color="dark"
-                        >
-                    Edit
-                    </button>
-                </td>
-                </tr>
-                <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <img
-                            src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                            class="rounded-circle"
-                            alt=""
-                            style="width: 45px; height: 45px"
-                            />
-                        <div class="ms-3">
-                            <p class="fw-bold mb-1">Kate Hunington</p>
-                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <p class="fw-normal mb-1">Designer</p>
-                    <p class="text-muted mb-0">UI/UX</p>
-                </td>
-                <td>
-                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                </td>
-                <td>Senior</td>
-                <td>
-                    <button
-                            type="button"
-                            class="btn btn-link btn-rounded btn-sm fw-bold"
-                            data-mdb-ripple-color="dark"
-                            >
-                    Edit
-                    </button>
-                </td>
-                </tr>
+                <?php if (count($positions) > 0) {
+                    foreach ($positions as $position) :
+                ?>
+                        <tr>
+                            <td><?php echo $position['id']; ?></td>
+                            <td><?php echo $position['name']; ?></td>
+                            <td><?php echo $position['description']; ?></td>
+                            <td><?php echo $position['createdAt']; ?></td>
+                            <td>
+                                <a href="<?php echo _WEB_ROOT; ?>/admin/positions/edit/<?php echo $position['id']; ?>" class="btn btn-link btn-sm btn-rounded">
+                                    Edit
+                                </a>
+                                <form method="post" action="<?php echo _WEB_ROOT; ?>/position/handle_delete_position/<?php echo $position['id']; ?>">
+                                    <button type="submit" class="btn btn-link btn-sm btn-rounded">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach;
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="5" class="text-center">No data</td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>

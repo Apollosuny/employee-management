@@ -58,7 +58,7 @@ class Database {
         return false;
     }
 
-    function deteleData($table, $data, $condition='') {
+    function deteleData($table, $condition='') {
 
         if (!empty($condition)) {
             $sql = "DELETE FROM $table WHERE $condition";

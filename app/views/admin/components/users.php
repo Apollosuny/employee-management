@@ -13,7 +13,9 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user) : ?>
+                <?php if (count($users) > 0) {
+                    foreach ($users as $user) : 
+                ?>
                     <tr>
                         <td><?php echo $user['id']; ?></td>
                         <td><?php echo $user['username']; ?></td>
@@ -27,7 +29,13 @@
                             </button>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                 <?php endforeach; 
+                    } else {
+                 ?>
+                    <tr>
+                        <td colspan="8" class="text-center">No data</td>
+                    </tr>
+                 <?php } ?>
             </tbody>
         </table>
     </div>
