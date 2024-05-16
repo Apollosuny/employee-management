@@ -17,6 +17,7 @@ class AuthController extends Controller
         $this->data['sub_content']['errors'] = Session::flash('errors');
         $this->data['sub_content']['oldData'] = Session::flash('oldData');
         $this->data['sub_content']['logout_success'] = Session::flash('logout_success');
+        $this->data['sub_content']['title'] = 'Sign In';
         $this->data['content'] = 'signin/signin';
         return $this->render('layout/app/app-layout', $this->data);
     }
@@ -45,14 +46,10 @@ class AuthController extends Controller
                 Session::flash('oldData', $request->getFields());
             } else {
                 $user = $this->userModel->getAUser($request->getFields()['username'], $request->getFields()['password']);
-                
-                // echo '<pre>';
-                // print_r($user['username']);
-                // echo '</pre>';
 
                 if (!empty($user)) {
                     /* Issue session */
-                    $check = Session::data('user', [
+                    Session::data('user', [
                         'username' => $user['username'],
                         'email' => $user['email'],
                         'role' => $user['role']

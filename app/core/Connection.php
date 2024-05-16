@@ -5,14 +5,12 @@ class Connection {
 
     private function __construct($config)
     {
-
         // Connect database
         try {
-            $connection = @mysqli_connect($config['host'], $config['user'], $config['password'], $config['databaseName'], '3308');
+            $connection = @mysqli_connect($config['host'], $config['user'], $config['password'], $config['databaseName'], $config['port']);
             self::$conn = $connection;
         } catch (Exception $exception) {
-            $mess = $exception->getMessage();
-            App::$app->loadError('404', ['messages'=>$mess]);
+            App::$app->loadError('connection-error');
             die();
         }
     }
