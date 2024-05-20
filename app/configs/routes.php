@@ -13,9 +13,13 @@ $routes['admin/positions/edit'] = 'position/editPosition';
 
 $routes['admin/contract-types'] = 'contractType/contractTypes';
 $routes['admin/contract-types/create'] = 'contractType/createContractType';
- $routes['admin/contract-types/edit'] = 'contractType/editContractType';
+$routes['admin/contract-types/edit'] = 'contractType/editContractType';
 
-$routes['admin/departments'] = 'admin/departments';
+$routes['admin/departments'] = 'department/departments';
+$routes['admin/departments/create'] = 'department/createDepartment';
+$routes['admin/departments/edit'] = 'department/editDepartment';
+
+
 $routes['admin/contracts'] = 'admin/contracts';
 
 // employee
