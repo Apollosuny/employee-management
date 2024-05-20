@@ -1,14 +1,10 @@
 <!--main-->
-<?php 
-	if ($errors) 
-		$errorsMsg = $errors['errors'];
-	
-	if ($oldData)
-		$oldData = $oldData['oldData'];
-	
-	$logoutMsg = '';
-	if ($logout_success)
-		$logoutMsg = $logout_success['logout_success'];
+<?php
+$errorsMsg = isset($errors['errors']) ? $errors['errors'] : null;
+
+$oldData = isset($oldData['oldData']) ? $oldData['oldData'] : null;
+
+$logoutMsg = isset($logout_success['logout_success']) ? $logout_success['logout_success'] : null;
 
 ?>
 <div class="h-100 position-relative">

@@ -1,7 +1,7 @@
 <?php
-$successMsg = $success['success'];
-$updatedSuccessMsg = $updated_success['updated_success'];
-$deletedSuccessMsg = $deleted_success['deleted_success'];
+$successMsg = isset($success['success']) ? $success['success'] : null;
+$updatedSuccessMsg = isset($updated_success['updated_success']) ? $updated_success['updated_success'] : null;
+$deletedSuccessMsg = isset($deleted_success['deleted_success']) ? $deleted_success['deleted_success'] : null;
 ?>
 
 <div class="bg-body-tertiary h-100 d-flex justify-content-center align-items-center">

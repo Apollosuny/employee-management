@@ -15,7 +15,10 @@ class ContractTypeController extends Controller
     /** Positions func */
     function contractTypes()
     {
-        $contractTypes = $this->contractTypeModel->getAllContractTypes();
+        $contractTypes = [];
+        $data = $this->contractTypeModel->getAllContractTypes();
+        if ($data != null)
+            $contractTypes = $data;
         $this->data['sub_content']['success'] = Session::flash('success');
         $this->data['sub_content']['deleted_success'] = Session::flash('deleted_success');
         $this->data['sub_content']['contractTypes'] = $contractTypes;
@@ -64,20 +67,20 @@ class ContractTypeController extends Controller
 
     function editContractType($id)
     {
-        $contractType = $this->contractTypeModel->getAPosition($id);
+        $contractType = $this->contractTypeModel->getAContractType($id);
         if (empty($contractType)) {
             Session::flash('not-found', 'The position is not found');
             $this->data['sub_content'] = [];
-            $this->data['content'] = 'admin/contract-types';
+            $this->data['content'] = 'admin/components/contract-type';
             return $this->render('layout/admin-layout', $this->data);
         }
         $this->data['sub_content']['updated_success'] = Session::flash('success');
-        $this->data['sub_content']['contractTypes'] = $contractType[0];
-        $this->data['content'] = 'admin/contract-types/edit-contract-type';
+        $this->data['sub_content']['contractType'] = $contractType;
+        $this->data['content'] = 'admin/contract-type/edit-contract-type';
         return $this->render('layout/admin-layout', $this->data);
     }
 
-    function handle_edit_position($id)
+    function hanle_update_contract_type($id)
     {
         $request = new Request();
         $respone = new Response();
@@ -96,32 +99,32 @@ class ContractTypeController extends Controller
                 Session::flash('errors', $request->errors());
                 Session::flash('oldData', $request->getFields());
             } else {
-                $newPosition = $this->contractTypeModel->updatePosition($id, $request->getFields()['name'], $request->getFields()['description']);
+                $contractType = $this->contractTypeModel->updateContractType($id, $request->getFields()['name'], $request->getFields()['description']);
 
-                if ($newPosition) {
+                if ($contractType) {
                     Session::flash('success', 'Updated successfully');
-                    $respone->redirect('admin/positions');
+                    $respone->redirect('admin/contract-types');
                     return;
                 }
             }
-            $respone->redirect('admin/positions');
+            $respone->redirect('admin/contract-types');
             return;
         }
     }
 
-    function handle_delete_position($id)
+    function handle_delete_contract_type($id)
     {
         $request = new Request();
         $respone = new Response();
         if ($request->isPost()) {
-            $newPosition = $this->contractTypeModel->deletePosition($id);
-            if ($newPosition) {
+            $contractType = $this->contractTypeModel->deleteContractType($id);
+            if ($contractType) {
                 Session::flash('deleted_success', 'Deleted successfully');
-                $respone->redirect('admin/positions');
+                $respone->redirect('admin/contract-types');
                 return;
             }
         }
-        $respone->redirect('admin/positions');
+        $respone->redirect('admin/contract-types');
         return;
     }
 }

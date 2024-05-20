@@ -19,14 +19,22 @@ class ContractTypeModel extends Model {
 
     public function getAllContractTypes() {
         $sql = "SELECT * FROM ".$this->tableName();
-        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-        return $data;
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+            return $data;
+        }
+        return null;
     }
 
     public function getAContractType($id) {
         $sql = "SELECT * FROM ".$this->tableName()." WHERE id = $id";
-        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-        return $data;
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            return $data;
+        }
+        return null;
     }
 
     public function createContractType($name, $description = '') {

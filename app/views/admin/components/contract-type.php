@@ -49,10 +49,10 @@
                             <td><?php echo $contractType['description']; ?></td>
                             <td><?php echo $contractType['createdAt']; ?></td>
                             <td>
-                                <a href="<?php echo _WEB_ROOT; ?>/admin/positions/edit/<?php echo $contractType['id']; ?>" class="btn btn-link btn-sm btn-rounded">
+                                <a href="<?php echo _WEB_ROOT; ?>/admin/contract-types/edit/<?php echo $contractType['id']; ?>" class="btn btn-link btn-sm btn-rounded">
                                     Edit
                                 </a>
-                                <form method="post" action="<?php echo _WEB_ROOT; ?>/position/handle_delete_position/<?php echo $contractType['id']; ?>">
+                                <form method="post" action="<?php echo _WEB_ROOT; ?>/contractType/handle_delete_contract_type/<?php echo $contractType['id']; ?>">
                                     <button type="submit" class="btn btn-link btn-sm btn-rounded">
                                         Delete
                                     </button>

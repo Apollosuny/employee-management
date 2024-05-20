@@ -14,9 +14,12 @@ class UserModel extends Model {
 
     public function getAllUsers() {
         $sql = "SELECT * FROM ".$this->tableName();
-        $result = $this->db;
-        $data = $this->db->query($sql);
-        return $data;
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+            return $data;
+        }
+        return null;
     }
 
     public function primaryKey()

@@ -15,7 +15,10 @@ class PositionController extends Controller
     /** Positions func */
     function positions()
     {
-        $positions = $this->positionModel->getAllPositions();
+        $positions = [];
+        $data = $this->positionModel->getAllPositions();
+        if ($data != null)
+            $positions = $data;
         $this->data['sub_content']['success'] = Session::flash('success');
         $this->data['sub_content']['deleted_success'] = Session::flash('deleted_success');
         $this->data['sub_content']['positions'] = $positions;
@@ -71,8 +74,9 @@ class PositionController extends Controller
             $this->data['content'] = 'admin/positions';
             return $this->render('layout/admin-layout', $this->data);
         }
+
         $this->data['sub_content']['updated_success'] = Session::flash('success');
-        $this->data['sub_content']['position'] = $position[0];
+        $this->data['sub_content']['position'] = $position; // Pass the entire $position array, not just the first element
         $this->data['content'] = 'admin/positions/edit-position';
         return $this->render('layout/admin-layout', $this->data);
     }
