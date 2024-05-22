@@ -23,14 +23,14 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //web-fonts -->
     
 </head>
-<body style="height: 100%; overflow: hidden">
-    <main class="" style="height: 100vh;">
-        <div class="row h-100 g-0">
-            <div class="col-2">
+<body>
+    <main >
+        <div>
+            <div class="position-fixed" style="width: 16rem; height: 100vh">
                 <?php $this->render('admin/components/sidebar') ?>
             </div>
-            <div class="col-10">
-                <div class="bg-body">
+            <div class="" style="margin-left: 16rem; height: 100vh">
+                <div class="bg-body position-fixed" style="width: calc(100% - 16rem)">
                     <div class="p-3 d-flex justify-content-between">
                         <div class="section-search">
                             <div class="input-group">

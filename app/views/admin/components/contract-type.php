@@ -1,5 +1,5 @@
-<div class="bg-body-tertiary h-100 d-flex justify-content-center align-items-center">
-    <div class="bg-body w-95 h-95 p-3">
+<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem">
+    <div class="bg-body w-95 m-3 p-3 scroll-y">
         <?php
         if (!empty($successMsg)) {
             echo "
