@@ -37,4 +37,36 @@ class UserModel extends Model {
         
         return null;
     }
+
+    public function getUniqueUser($username, $email) {
+        $sql = "SELECT * FROM ".$this->tableName()." WHERE username='".$username."' OR email='".$email."' LIMIT 1";
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            return $data;
+        }
+        return null;
+    }
+
+    public function create($username, $email, $password) {
+        $params = [
+            'username' => $username,
+            'email' => $email,
+            'password' => $password
+        ];
+        $data = $this->db->insertDataReturnId($this->tableName(), $params);
+        return $data;
+    }
+
+    public function updateProfile($profileId, $userId) {
+        $sql = "UPDATE ".$this->tableName()." SET profileId = ".$profileId." WHERE id = ".$userId;
+        $data = $this->db->query($sql);
+        return $data;
+    }
+
+    public function updateLastLogin($userId, $time) {
+        $sql = "UPDATE ".$this->tableName()." SET lastLoginAt = '".$time."' WHERE id = ".$userId;
+        $data = $this->db->query($sql);
+        return $data;
+    }
 }

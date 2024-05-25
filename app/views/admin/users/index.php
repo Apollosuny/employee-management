@@ -1,5 +1,24 @@
+<?php
+$successMsg = isset($success['success']) ? $success['success'] : null;
+?>
+
 <div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem">
     <div class="bg-body w-95 p-3 m-3 scroll-y">
+    <?php
+        if (!empty($successMsg)) {
+            echo "
+                <div class='alert alert-success' role='alert'>" .
+                $successMsg
+                . "</div>
+                ";
+        }
+        ?>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>All Employees</h3>
+            <div>
+                <a href="<?php echo _WEB_ROOT; ?>/admin/users/register" class="btn btn-info">Register new user</a>
+            </div>
+        </div>
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>

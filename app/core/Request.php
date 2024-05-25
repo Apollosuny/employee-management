@@ -3,7 +3,7 @@
 class Request
 {
 
-    private $__rules = [], $__messages;
+    private $__rules = [], $__messages = [];
     private $errors = [];
     public $db;
 
@@ -140,13 +140,14 @@ class Request
                         }
 
                         if (!empty($tableName) && !empty($fieldCheck)) {
+                            
                             if (count($rulesArr) == 3) {
-                                $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'")->row_count();
+                                $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]'");
                             } else if (count($rulesArr) == 4) {
                                 if (!empty($rulesArr) == 3 && preg_match('~.+?\=.+?~is', $rulesArr[3])) {
                                     $conditionWhere = $rulesArr[3];
                                     $conditionWhere = str_replace('=', '<>', $conditionWhere);
-                                    $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]' AND $conditionWhere")->row_count();
+                                    $checkExist = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck='$dataFields[$fieldName]' AND $conditionWhere");
                                 }
                                     
                             }

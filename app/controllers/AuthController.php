@@ -46,7 +46,6 @@ class AuthController extends Controller
                 Session::flash('oldData', $request->getFields());
             } else {
                 $user = $this->userModel->getAUser($request->getFields()['username'], $request->getFields()['password']);
-
                 if (!empty($user)) {
                     /* Issue session */
                     Session::data('user', [
@@ -54,6 +53,15 @@ class AuthController extends Controller
                         'email' => $user['email'],
                         'role' => $user['role']
                     ]);
+
+                    $currentTime = date('Y-m-d H:i:s');
+
+                    $updateLastLogin = $this->userModel->updateLastLogin($user['id'], $currentTime);
+                    if (!$updateLastLogin) {
+                        Session::flash('errors', ['Something went wrong']);
+                        $respone->redirect('');
+                        return;
+                    }
 
                     if (!empty($user['role'])) {
                         if ($user['role'] == 'employee') {
@@ -75,74 +83,22 @@ class AuthController extends Controller
                 } 
             }
         }
-        // if (Session::data('user')) {
-        //     $user = Session::data('user');
-        //     if ($user['role'] == 'employee') {
-        //         $respone->redirect('dashboard');
-        //     } else if ($user['role'] == 'admin') {
-        //         $respone->redirect('admin/adminpanel');
-        //     } else {
-        //         $respone->redirect('');
-        //     }
-        // } else {
-        //     $respone->redirect('');
-        // }
-    }
-
-    function signup()
-    {
-        $this->data['content'] = 'signup/signup';
-        return $this->render('layout/app/app-layout', $this->data);
-    }
-
-    function handle_sign_up()
-    {
-        $request = new Request();
-
-        if ($request->isPost()) {
-            $request->rules([
-                'username' => 'required|min:6|max:30',
-                'email' => 'required|email|unique:User:email',
-                'password' => 'required|min:6',
-                'confirm_password' => 'required|match:password'
-            ]);
-
-            $request->message([
-                'username.required' => 'Username is required',
-                'username.min' => 'Username min is 6',
-                'username.max' => 'Username max is 30',
-                'email.required' => 'Email is required',
-                'email.email' => 'The string must be email',
-                'passowrd.required' => 'Password is required',
-                'password.min' => 'Password min is 6',
-                'confirm_password.required' => 'Confirm password is required',
-                'confirm_password.match' => 'Confirm password is not match with password'
-            ]);
-
-            $validate = $request->validate();
-            if (!$validate) {
-                $this->data['errors'] = $request->errors();
-                $this->data['old'] = $request->getFields();
-            }
-
-            $this->db->insertData('User', $request->getFields());
-        } else {
-            $respone = new Response();
-        }
     }
 
     function logout()
     {
         $request = new Request();
+        $response = new Response();
 
         if ($request->isPost()) {
             if (Session::data('user') != null) {
-                $response = new Response();
                 Session::flash('logout_success', 'Logout successfully');
                 Session::delete();
                 $response->redirect('');
                 return;
             }
+            $response->redirect('');
+            return;
         } 
     }
 }

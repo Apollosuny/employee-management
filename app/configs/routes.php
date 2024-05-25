@@ -1,11 +1,12 @@
 <?php
 // auth
 $routes['default_controller'] = 'auth';
-$routes['signup'] = 'auth/signup';
 
 // admin
 $routes['admin/adminpanel'] = 'admin/dashboard';
-$routes['admin/users'] = 'admin/users';
+
+$routes['admin/users'] = 'employee/index';
+$routes['admin/users/register'] = 'employee/register';
 
 $routes['admin/positions'] = 'position/positions';
 $routes['admin/positions/create'] = 'position/createPosition';

@@ -34,6 +34,29 @@ class Database {
         return false;
     }
 
+    function insertDataReturnId($table, $data) {
+        if (!empty($data)) {
+            $fieldStr  = '';
+            $valueStr = '';
+            foreach ($data as $key=>$value) {
+                $fieldStr.=strtolower($key).",";
+                $valueStr.="'".$value."',";
+            }
+            $fieldStr = rtrim($fieldStr, ',');
+            $valueStr = rtrim($valueStr, ',');
+
+            $sql = "INSERT INTO $table($fieldStr) VALUES ($valueStr)";
+
+            $status = $this->query($sql);
+
+            if ($status) {
+                return $this->lastInsertId();
+            }
+        }
+
+        return null;
+    }
+
     function updateData($table, $data, $condition='') {
         if (!empty($data)) {
             $updateStr = '';
@@ -87,7 +110,7 @@ class Database {
         }
     }
 
-    // function lastInsertId() {
-    //     return $this->__conn->lastInsertId();
-    // }
+    function lastInsertId() {
+        return $this->__conn->insert_id;
+    }
 }
