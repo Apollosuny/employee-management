@@ -62,3 +62,15 @@
     overflow: hidden;
     overflow-y: auto;
 }
+
+.hover {
+    padding: 8px;
+    transition: linear .2s;
+}
+
+.hover:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    
+}
+
