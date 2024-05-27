@@ -36,7 +36,6 @@ if (!empty($config['database'])) {
     $db_config = array_filter($config['database']);
     if (!empty($db_config)) {
         require_once 'app/core/Connection.php';
-        require_once 'app/core/QueryBuilder.php';
         require_once 'app/core/Database.php';
         require_once 'app/core/DB.php';
     }

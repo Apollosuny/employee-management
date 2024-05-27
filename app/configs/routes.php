@@ -21,7 +21,9 @@ $routes['admin/departments/create'] = 'department/createDepartment';
 $routes['admin/departments/edit'] = 'department/editDepartment';
 
 
-$routes['admin/contracts'] = 'admin/contracts';
+$routes['admin/contracts'] = 'contract/index';
+$routes['admin/contracts/create'] = 'contract/create';
+$routes['admin/contracts/edit'] = 'contract/edit';
 
 // employee
 $routes['dashboard'] = 'user/index';

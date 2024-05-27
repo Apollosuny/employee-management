@@ -3,8 +3,6 @@
 class Database {
     private $__conn;
 
-    use QueryBuilder;
-
     function __construct()
     {
         global $db_config;

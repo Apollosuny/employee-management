@@ -127,18 +127,31 @@ class App {
     public function handleRouteMiddleware($routeKey, $db) {
         global $config;
         $routeKey = trim($routeKey);
+        
         if (!empty($config['app']['routeMiddleware'])) {
             $routeMiddlewareArr = $config['app']['routeMiddleware'];
-            foreach ($routeMiddlewareArr as $key=>$middlewareItem) {
-                if ($routeKey == trim($key) && file_exists('app/middlewares/'.$middlewareItem.'.php')) {
-                    // echo 'app/middlewares/'.$middlewareItem.'.php';
-                    require_once 'app/middlewares/'.$middlewareItem.'.php';
-                    if (class_exists($middlewareItem)) {
-                        $middlewareObject = new $middlewareItem();
-                        if (!empty($db)) {
-                            $middlewareObject->db = $db;
+            
+            foreach ($routeMiddlewareArr as $key => $middlewareItem) {
+                if ($routeKey == trim($key)) {
+                    $middlewareClass = $middlewareItem['middleware'];
+                    $role = isset($middlewareItem['role']) ? $middlewareItem['role'] : null;
+    
+                    if (file_exists('app/middlewares/' . $middlewareClass . '.php')) {
+                        require_once 'app/middlewares/' . $middlewareClass . '.php';
+    
+                        if (class_exists($middlewareClass)) {
+                            $middlewareObject = new $middlewareClass();
+                            
+                            if (!empty($db)) {
+                                $middlewareObject->db = $db;
+                            }
+    
+                            if (!empty($role)) {
+                                $middlewareObject->role = $role;
+                            }
+
+                            $middlewareObject->handle();
                         }
-                        $middlewareObject->handle();
                     }
                 }
             }

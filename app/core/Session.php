@@ -5,8 +5,6 @@ class Session
     /**
      * data (key, value) => set session
      * data (key) => get session
-     *
-     * @return void
      */
     static public function data($key = '', $value = '')
     {
