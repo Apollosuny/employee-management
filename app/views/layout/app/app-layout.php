@@ -44,7 +44,7 @@ if ($request_url == '/' || $request_url == '/signup') {
     $this->render($content, $sub_content);
 } else {
     $this->render('layout/header/header');
-    $this->render($content);
+    $this->render($content, $sub_content);
     $this->render('layout/footer/footer');
 }
 ?>

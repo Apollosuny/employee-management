@@ -49,6 +49,7 @@ class AuthController extends Controller
                 if (!empty($user)) {
                     /* Issue session */
                     Session::data('user', [
+                        'id' => $user['id'],
                         'username' => $user['username'],
                         'email' => $user['email'],
                         'role' => $user['role']
