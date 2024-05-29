@@ -14,6 +14,7 @@ $web_root = $web_root.$folder;
 
 define('_WEB_ROOT', $web_root);
 define('_IMG_ROOT_URL', $web_root.'/public/assets/images');
+define('_FILE_ROOT', __DIR__ . '\public\assets\uploads');
 
 $configs_dir = scandir('app/configs');
 if (!empty($configs_dir)) {

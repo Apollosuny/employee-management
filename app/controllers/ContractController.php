@@ -15,7 +15,31 @@ class ContractController extends Controller
     $this->userModel = $this->model('UserModel');
   }
 
-  public function index()
+  public function employeeContract()
+  {
+    $contracts = [];
+    $data = $this->contractModel->getContractsByEmployee(Session::data('user')['user']['id']);
+    if ($data != null) {
+      $contracts = $data;
+    }
+    $this->data['sub_content']['contracts'] = $contracts;
+    $this->data['content'] = 'client/contracts';
+    return $this->render('layout/app/app-layout', $this->data);
+  }
+
+  public function show($id) 
+  {
+    $contracts = [];
+    $data = $this->contractModel->getAContractByEmployee($id, Session::data('user')['user']['id']);
+    if ($data != null) {
+      $contracts = $data;
+    }
+    $this->data['sub_content']['contract'] = $contracts;
+    $this->data['content'] = 'client/contracts/show';
+    return $this->render('layout/app/app-layout', $this->data);
+  }
+
+  public function index() 
   {
     $contracts = [];
     $data = $this->contractModel->getAllContracts();

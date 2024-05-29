@@ -56,6 +56,12 @@ class Request
                     }
                 }
             }
+
+            if (!empty($_FILES)) {
+                foreach ($_FILES as $key => $file) {
+                    $dataFields[$key] = $file;
+                }
+            }
         }
 
         return $dataFields;

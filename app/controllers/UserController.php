@@ -4,6 +4,7 @@ class UserController extends Controller {
     public $data = [];
 
     function index () {
+        $this->data['sub_content'][] = [];
         $this->data['content'] = 'client/dashboard';
         return $this->render('layout/app/app-layout', $this->data);
     }
@@ -14,6 +15,7 @@ class UserController extends Controller {
     }
 
     function profile() {
+        $this->data['sub_content'][] = [];
         $this->data['content'] = 'client/profile';
         return $this->render('layout/app/app-layout', $this->data);
     }

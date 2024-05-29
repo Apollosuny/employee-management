@@ -52,7 +52,8 @@ class AuthController extends Controller
                         'id' => $user['id'],
                         'username' => $user['username'],
                         'email' => $user['email'],
-                        'role' => $user['role']
+                        'role' => $user['role'],
+                        'profileId' => $user['profileId']
                     ]);
 
                     $currentTime = date('Y-m-d H:i:s');

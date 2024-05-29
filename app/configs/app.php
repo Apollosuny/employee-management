@@ -10,10 +10,10 @@ $config['app'] = [
         ],
 
         /* User Middleware */
-        'dashboard' => [
-            'middleware' => AuthorizeMiddleware::class,
-            'role' => 'employee'
-        ]
+        // 'dashboard' => [
+        //     'middleware' => AuthorizeMiddleware::class,
+        //     'role' => 'employee'
+        // ]
     ],
     'globalMiddleware' => [
 

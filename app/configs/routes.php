@@ -27,8 +27,9 @@ $routes['admin/contracts/edit'] = 'contract/edit';
 
 // employee
 $routes['dashboard'] = 'user/index';
-$routes['dashboard/contracts'] = 'user/contracts';
-$routes['dashboard/profile'] = 'user/profile';
+$routes['dashboard/contracts'] = 'contract/employeeContract';
+$routes['dashboard/contracts/show'] = 'contract/show';
+$routes['dashboard/profile'] = 'profile/index';
 
 $routes['dashboard/attendanceChecking'] = 'attendance/index';
 $routes['dashboard/attendanceChecking/create'] = 'attendance/create';
