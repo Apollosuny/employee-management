@@ -1,5 +1,9 @@
-<div class="bg-body-tertiary h-100 d-flex justify-content-center align-items-center">
+<div class="bg-body-tertiary h-100 d-flex justify-content-center align-items-center" style="padding-top: 5rem">
     <div class="bg-body w-95 h-95 p-3">
+        <div>
+            <h3>Dashboard</h3>
+        </div>
+       
         <div>
             <canvas id="myChart"></canvas>
         </div>
