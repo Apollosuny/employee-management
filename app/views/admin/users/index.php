@@ -2,7 +2,7 @@
 $successMsg = isset($success['success']) ? $success['success'] : null;
 ?>
 
-<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem">
+<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem; min-height: 100vh;">
     <div class="bg-body w-95 p-3 m-3 scroll-y">
     <?php
         if (!empty($successMsg)) {

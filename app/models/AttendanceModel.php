@@ -17,6 +17,16 @@ class AttendanceModel extends Model {
         
     }
 
+    public function findAll() {
+        $sql = "SELECT * FROM ".$this->tableName();
+        $result = $this->db->query($sql);
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+            return $data;
+        }
+        return null;
+    }
+
     public function getAllRecords($userId) {
         $sql = "SELECT * FROM ".$this->tableName()." WHERE userId =".$userId;
         $result = $this->db->query($sql);

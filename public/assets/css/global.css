@@ -28,14 +28,14 @@
     height: 100% !important;
 }
 
-.section-employee-info > .avatar {
+.avatar {
     width: 45px;
     height: 45px;
     overflow: hidden;
     border-radius: 50%;
 }
 
-.section-employee-info > .avatar > img {
+.avatar > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -101,4 +101,12 @@
 .max-height-350 {
     min-height: 350px;
     max-height: 350px;
+}
+
+.card-hover {
+    transition: transform linear .2s;
+}
+
+.card-hover:hover {
+    transform: scale(1.03);
 }

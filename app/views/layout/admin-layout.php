@@ -21,7 +21,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700" rel="stylesheet">
 <!-- //web-fonts -->
-    
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
     <main >
@@ -29,8 +29,8 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
             <div class="position-fixed" style="width: 16rem; height: 100vh">
                 <?php $this->render('admin/components/sidebar') ?>
             </div>
-            <div class="" style="margin-left: 16rem; height: 100vh">
-                <div class="bg-body position-fixed" style="width: calc(100% - 16rem)">
+            <div class="" style="margin-left: 16rem;">
+                <div class="bg-body position-fixed" style="width: calc(100% - 16rem); z-index: 1">
                     <div class="p-3 d-flex justify-content-between">
                         <div class="section-search">
                             <div class="input-group">

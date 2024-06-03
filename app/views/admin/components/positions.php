@@ -4,7 +4,7 @@ $updatedSuccessMsg = isset($updated_success['updated_success']) ? $updated_succe
 $deletedSuccessMsg = isset($deleted_success['deleted_success']) ? $deleted_success['deleted_success'] : null;
 ?>
 
-<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem">
+<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem; min-height: 100vh;">
     <div class="bg-body p-3 m-3 w-95 scroll-y">
         <?php
         if (!empty($successMsg)) {
