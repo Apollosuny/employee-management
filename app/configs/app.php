@@ -83,13 +83,8 @@ $config['app'] = [
             'middleware' => AuthorizeMiddleware::class,
             'role' => 'employee'
         ],
-
-        '' => [
-            'middleware' => AuthMiddleware::class,
-        ]
     ],
     'globalMiddleware' => [
-
     ]
 ];
 

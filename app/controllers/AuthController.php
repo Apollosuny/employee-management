@@ -95,12 +95,13 @@ class AuthController extends Controller
         if ($request->isPost()) {
             if (Session::data('user') != null) {
                 Session::flash('logout_success', 'Logout successfully');
-                Session::delete();
+                Session::delete('user');
                 $response->redirect('');
                 return;
             }
             $response->redirect('');
             return;
         } 
+        $response->redirect('');
     }
 }

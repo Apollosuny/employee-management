@@ -1,20 +1,25 @@
 <?php
 
-class AuthMiddleware extends Middlewares {
+class AuthMiddleware extends Middlewares
+{
     public function handle()
     {
+        $response = new Response();
+
         if (Session::data('user') != null) {
-            $response = new Response();
+            $user = Session::data('user');
 
-            if (Session::data('user')['user']['role'] == 'employee') {
-                $response->redirect('dashboard');
-                exit;
-            } else {
-                $response->redirect('admin/adminpanel');
-                exit;
+            if (isset($user['user']['role'])) {
+                if ($user['user']['role'] == 'employee') {
+                    $response->redirect('dashboard');
+                    return;
+                } else {
+                    $response->redirect('admin/adminpanel');
+                    return;
+                }
             }
-
-            
         }
+
+        $response->redirect('');
     }
 }

@@ -54,26 +54,6 @@ class App {
         $urlArr = array_values($urlArr);
 
         $urlCheck = '';
-        // if (!empty($urlArr)) {
-        //     foreach ($urlArr as $key=>$item) {
-        //         $urlCheck.=$item.'/';
-        //         $fileCheck = rtrim($urlCheck, '/');
-        //         $fileArr = explode('/', $fileCheck);
-        //         $fileArr[count($fileArr) - 1] = ucfirst($fileArr[count($fileArr)] - 1);
-        //         $fileCheck = implode('/', $fileArr);
-                
-        //         if (!empty($urlArr[$key - 1])) {
-        //             unset($urlArr[$key - 1]);
-        //         }
-        //         if (file_exists('app/controllers/'.($fileCheck).'Controller.php')) {
-        //             $urlCheck = $fileCheck;
-        //             break;
-        //         }
-        //     }
-    
-        //     $urlArr = array_values($urlArr);
-        // }
-
 
         if (!empty($urlArr[0])) {
             $this->__controller =  ucfirst($urlArr[0]) . 'Controller';
@@ -162,11 +142,11 @@ class App {
         global $config;
         if (!empty($config['app']['globalMiddleware'])) {
             $globalMiddlewareArr = $config['app']['globalMiddleware'];
-            foreach ($globalMiddlewareArr as $key=>$middlewareItem) {
-                if (file_exists('app/middlewares/'.$middlewareItem.'.php')) {
-                    require_once 'app/middlewares/'.$midlewareItem.'.php.';
-                    if (class_exists($midlewareItem)) {
-                        $middlewareObject = new $midlewareItem();
+            foreach ($globalMiddlewareArr as $middlewareItem) {
+                if (file_exists('app/middlewares/' . $middlewareItem . '.php')) {
+                    require_once 'app/middlewares/' . $middlewareItem . '.php';
+                    if (class_exists($middlewareItem)) {
+                        $middlewareObject = new $middlewareItem();
                         if (!empty($db)) {
                             $middlewareObject->db = $db;
                         }

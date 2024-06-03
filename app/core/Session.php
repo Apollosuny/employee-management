@@ -33,6 +33,11 @@ class Session
     static public function delete($key = '')
     {
         $sessionKey = self::isInvalid();
+        if ($sessionKey === false) {
+            // Xử lý trường hợp sessionKey không hợp lệ nếu cần
+            return false;
+        }
+
         if (!empty($key)) {
             if (isset($_SESSION[$sessionKey][$key])) {
                 unset($_SESSION[$sessionKey][$key]);
@@ -40,10 +45,12 @@ class Session
             }
             return false;
         } else {
-            unset($_SESSION[$sessionKey]);
-            return true;
+            if (isset($_SESSION[$sessionKey])) {
+                unset($_SESSION[$sessionKey]);
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 
     static public function flash($key = '', $value = '')
