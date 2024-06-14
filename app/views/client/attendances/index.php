@@ -1,12 +1,16 @@
 <div class="container" style="min-height: 100vh;">
-  <div>
-
-    <form method="post" action="<?php echo _WEB_ROOT; ?>/attendance/checkin">
-      <button type="submit" class="btn btn-info">Check in</button>
-    </form>
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <div class="my-2"><a
+        class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+        href="<?php echo _WEB_ROOT; ?>/dashboard">Back</a></div>
+    <div>
+      <form method="post" action="<?php echo _WEB_ROOT; ?>/attendance/checkin">
+        <button type="submit" class="btn btn-info">Check in</button>
+      </form>
+    </div>
   </div>
 
-  <table class="table table-striped mt-5">
+  <table class="table table-striped mt-3">
     <thead>
       <tr>
         <th scope="col">#</th>
