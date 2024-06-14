@@ -5,12 +5,11 @@ $oldData = isset($oldData['oldData']) ? $oldData['oldData'] : null;
 
 ?>
 
-<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem">
+<div class="bg-body-tertiary h-100 d-flex justify-content-center" style="padding-top: 5rem; min-height: 100vh;">
     <div class="bg-body w-95 p-3 m-3 scroll-y">
         <div class="mb-3">
             <h3>Register new employee</h3>
         </div>
-        <?php var_dump($errorsMsg); ?>
         <form method="post" action="<?php echo _WEB_ROOT; ?>/employee/handle_register_user">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

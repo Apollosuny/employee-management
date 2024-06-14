@@ -140,20 +140,20 @@ class App {
 
     public function handleGlobalMiddleware($db) {
         global $config;
-        if (!empty($config['app']['globalMiddleware'])) {
-            $globalMiddlewareArr = $config['app']['globalMiddleware'];
-            foreach ($globalMiddlewareArr as $middlewareItem) {
-                if (file_exists('app/middlewares/' . $middlewareItem . '.php')) {
-                    require_once 'app/middlewares/' . $middlewareItem . '.php';
-                    if (class_exists($middlewareItem)) {
-                        $middlewareObject = new $middlewareItem();
-                        if (!empty($db)) {
-                            $middlewareObject->db = $db;
-                        }
-                        $middlewareObject->handle();
-                    }
-                }
-            }
-        }
+        // if (!empty($config['app']['globalMiddleware'])) {
+        //     $globalMiddlewareArr = $config['app']['globalMiddleware'];
+        //     foreach ($globalMiddlewareArr as $middlewareItem) {
+        //         if (file_exists('app/middlewares/' . $middlewareItem . '.php')) {
+        //             require_once 'app/middlewares/' . $middlewareItem . '.php';
+        //             if (class_exists($middlewareItem)) {
+        //                 $middlewareObject = new $middlewareItem();
+        //                 if (!empty($db)) {
+        //                     $middlewareObject->db = $db;
+        //                 }
+        //                 $middlewareObject->handle();
+        //             }
+        //         }
+        //     }
+        // }
     }
 }

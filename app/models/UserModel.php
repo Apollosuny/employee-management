@@ -79,4 +79,10 @@ class UserModel extends Model {
         $data = $this->db->query($sql);
         return $data;
     }
+
+    public function deleteUser($userId) {
+        $sql = "DELETE FROM ".$this->tableName()." WHERE id = ".$userId;
+        $data = $this->db->query($sql);
+        return $data;
+    }
 }

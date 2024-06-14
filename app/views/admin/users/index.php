@@ -12,6 +12,13 @@ $successMsg = isset($success['success']) ? $success['success'] : null;
                 . "</div>
                 ";
         }
+        if (!empty($deletedSuccessMsg)) {
+            echo "
+                <div class='alert alert-success' role='alert'>" .
+                $deletedSuccessMsg
+                . "</div>
+                ";
+        }
         ?>
         <div class="d-flex justify-content-between align-items-center">
             <h3>All Employees</h3>
@@ -43,9 +50,11 @@ $successMsg = isset($success['success']) ? $success['success'] : null;
                         <td><?php echo $user['createdAt']; ?></td>
                         <td><?php echo $user['status']; ?></td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                Edit
-                            </button>
+                            <form method="post" action="<?php echo _WEB_ROOT; ?>/employee/delete_user/<?php echo $user['id']; ?>">
+                                <button type="submit" class="btn btn-link btn-sm btn-rounded">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                  <?php endforeach; 

@@ -20,6 +20,7 @@ class EmployeeController extends Controller
     $users = $this->userModel->getAllUsers();
     $this->data['sub_content']['users'] = $users;
     $this->data['sub_content']['success'] = Session::flash('success');
+    $this->data['sub_content']['deleted_success'] = Session::flash('deleted_success');
     $this->data['content'] = 'admin/users/index';
     return $this->render('layout/admin-layout', $this->data);
   }
@@ -74,9 +75,11 @@ class EmployeeController extends Controller
         if ($newUser) {
           $departmentId = $request->getFields()['department'];
           $newProfile = $this->profileModel->create($departmentId);
-          if (!$newProfile) return;
+          if (!$newProfile)
+            return;
           $updateUser = $this->userModel->updateProfile($newProfile, $newUser);
-          if (!$updateUser) return;
+          if (!$updateUser)
+            return;
           Session::flash('success', 'Created successfully');
           $respone->redirect('admin/users');
           return;
@@ -87,5 +90,21 @@ class EmployeeController extends Controller
         }
       }
     }
+  }
+
+  function delete_user($userId)
+  {
+    $request = new Request();
+    $respone = new Response();
+    if ($request->isPost()) {
+      $user = $this->userModel->deleteUser($userId);
+      if ($user) {
+        Session::flash('deleted_success', 'Deleted successfully');
+        $respone->redirect('admin/users');
+        return;
+      }
+    }
+    $respone->redirect('admin/users');
+    return;
   }
 }
